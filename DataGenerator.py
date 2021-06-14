@@ -46,19 +46,19 @@ def generate_data(cases, col, prob):
 ##########################    
     
 # Number of cases for each severity :
-mild = 10
-moderate = 10
-severe = 10
+mild = 100
+moderate = 100
+severe = 100
 
 # Number of features we are considering
-n = 2
+n = 5
 
 # Probability matrix for feature bases on severity:
 # prob[i,j] will be the probability of having feature j given you have severity i
 prob = np.array([
-    [.1, .2],
-    [.4, .5],
-    [.7, .8]
+    [.1, .2, .5, .2, .1],
+    [.4, .5, .5, .3, .8],
+    [.7, .8, .6, .7, .9]
     ])
 
 # We generate a matrix for each severity type:
