@@ -48,28 +48,50 @@ def generate_data(cases, col, prob):
 # Number of cases for each severity :
 mild = 10
 moderate = 10
-high = 10
+severe = 10
 
-# Number of features:
-n=2
+# Number of features we are considering
+n = 2
 
-# Probability for feature bases on severity:
-test1 = .2
-test2 = .9
+# Probability matrix for feature bases on severity:
+# prob[i,j] will be the probability of having feature j given you have severity i
+prob = np.array([
+    [.1, .2],
+    [.4, .5],
+    [.7, .8]
+    ])
 
 # We generate a matrix for each severity type:
     # Each row is an individual
     # Each column specifies if the feature is present or not (binary)
+
+# Here we generate the mild cases set
 mild_cases = np.zeros((mild, n))
+for i in range(n):
+    generate_data(mild_cases, i, prob[0,i])
+
+# Here we generate the mild cases set
 moderate_cases = np.zeros((moderate, n))
-high_cases = np.zeros((high, n))
+for i in range(n):
+    generate_data(moderate_cases, i, prob[1,i])   
+    
+# Here we generate the mild cases set
+severe_cases = np.zeros((severe, n))
+for i in range(n):
+    generate_data(severe_cases, i, prob[2,i])
 
 
 
-mild_cases = generate_data(mild_cases, 0, test1)
-mild_cases = generate_data(mild_cases, 1, test2)
 
+print("Mild Cases:")
 print(mild_cases)
+
+print("Moderate Cases:")
+print(moderate_cases)
+
+print("Severe Cases:")
+print(severe_cases)
+
 
 
 
