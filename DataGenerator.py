@@ -41,24 +41,60 @@ def generate_data(cases, col, prob):
 
 
  
-##########################
-# Example of use 
-##########################    
+  
     
 # Number of cases for each severity :
-mild = 100
-moderate = 100
-severe = 100
+mild = 10
+severe = 10
 
 # Number of features we are considering
-n = 5
+n = 15
+
+#################
+# Parameters sets
+#################
+
+############ Thorax ############
+# Severe cases
+female_s = 0.2
+male_s = 0.80
+never_smoke_s = 0.129411765
+ex_smoker_s = 0.494117647
+smoker_s = 0.376470588
+wheezing_s = 0.894117647
+congestion_s = 0.494117647
+rhinorrhea_s = 0.388235294
+sore_throat_s = 0.223529412
+sputum_s = 0.576470588
+fever_s = 0.164705882
+headache_s = 0.317647059
+muscle_pain_s = 0.188235294
+hoarse_s = 0.4
+steroids_preadmission_s = 0.576470588
+
+# Not Severe cases
+female = 0.095238095
+male = 1-female
+never_smoke = 0.1666666667
+ex_smoker = 0.547619048
+smoker = 0.285714286
+wheezing = 0.523809524
+congestion = 0.214285714
+rhinorrhea = 0.238095238
+sore_throat = 0.023809524
+sputum = 0
+fever = 0.095238095
+headache = 0.023809524
+muscle_pain = 0.30952381
+hoarse = 0.30952381
+steroids_preadmission = 0.547619048
+#######################################
 
 # Probability matrix for feature bases on severity:
 # prob[i,j] will be the probability of having feature j given you have severity i
 prob = np.array([
-    [.1, .2, .5, .2, .1],
-    [.4, .5, .5, .3, .8],
-    [.7, .8, .6, .7, .9]
+    [female, male, never_smoke, ex_smoker, smoker, wheezing, congestion, rhinorrhea, sore_throat, sputum, fever, headache, muscle_pain, hoarse, steroids_preadmission],
+    [female_s, male_s, never_smoke_s, ex_smoker_s, smoker_s, wheezing_s, congestion_s, rhinorrhea_s, sore_throat_s, sputum_s, fever_s, headache_s, muscle_pain_s, hoarse_s, steroids_preadmission_s]
     ])
 
 # We generate a matrix for each severity type:
@@ -70,24 +106,15 @@ mild_cases = np.zeros((mild, n))
 for i in range(n):
     generate_data(mild_cases, i, prob[0,i])
 
-# Here we generate the mild cases set
-moderate_cases = np.zeros((moderate, n))
-for i in range(n):
-    generate_data(moderate_cases, i, prob[1,i])   
     
-# Here we generate the mild cases set
+# Here we generate the severe cases set
 severe_cases = np.zeros((severe, n))
 for i in range(n):
-    generate_data(severe_cases, i, prob[2,i])
-
-
+    generate_data(severe_cases, i, prob[1,i])
 
 
 print("Mild Cases:")
 print(mild_cases)
-
-print("Moderate Cases:")
-print(moderate_cases)
 
 print("Severe Cases:")
 print(severe_cases)
