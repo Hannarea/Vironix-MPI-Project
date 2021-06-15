@@ -31,7 +31,7 @@ def generate_data(cases, col, prob):
         # fills normal distributed features
         
         # Not severe (mild)
-        if prob == -1:  
+        if prob == -1:
             cases[i,col] = np.random.normal(65.8, 9.7, 1)
         elif prob == -2:  
             cases[i,col] = np.random.normal(7.8,6.7, 1)
@@ -43,7 +43,7 @@ def generate_data(cases, col, prob):
             cases[i,col] = np.random.normal(36.1,12.7, 1)  
         
         # Severe
-        if prob == -1.1:  
+        elif prob == -1.1: 
             cases[i,col] = np.random.normal(65.1,10.5, 1)
         elif prob == -2.1:  
             cases[i,col] = np.random.normal(6.4, 4.9, 1)
@@ -69,7 +69,7 @@ def generate_data(cases, col, prob):
   
     
 # Number of cases for each severity :
-mild = 50
+mild = 10
 severe = 10
 
 # Number of features: 
@@ -124,12 +124,14 @@ prob = np.array([
     # Each column specifies if the feature is present or not (binary)
 
 # Here we generate the mild cases set
+print("making the mild cases:")
 mild_cases = np.zeros((mild, n))
 for i in range(n):
     generate_data(mild_cases, i, prob[0,i])
 
     
 # Here we generate the severe cases set
+print("Making the severe cases:")
 severe_cases = np.zeros((severe, n))
 for i in range(n):
     generate_data(severe_cases, i, prob[1,i])
