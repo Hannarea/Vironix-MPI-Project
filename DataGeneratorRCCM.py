@@ -69,11 +69,11 @@ def generate_data(cases, col, prob):
   
     
 # Number of cases for each severity :
-mild = 10
+mild = 50
 severe = 10
 
 # Number of features: 
-n = 11
+n = 10
 
 
 #############################
@@ -81,14 +81,12 @@ n = 11
 #############################
 
 female_s = 0.531531532
-male_s = 1-female_s
 white_s = 0.932432432
 retired_s = 0.527027027
 bronchitis_s = 0.310344828
 smoker_s = 0.31981982
 
 female = 0.515957447
-male = 1-female
 white = 0.882978723
 retired = 0.585106383
 bronchitis = 0.271276596
@@ -112,11 +110,12 @@ smoker = 0.308510638
     # -5.1: EXACT scores day 1, Total (mean, standard deviation) = (47.9,9.6) 
          
 prob = np.array([
-    [female, male, white, retired, bronchitis, smoker, -1, -2, -3, -4, -5],
-    [female_s, male_s, white_s, retired_s, bronchitis_s, smoker_s, -1.1, -2.1, -3.1, -4.1, -5.1]
+    [female, white, retired, bronchitis, smoker, -1, -2, -3, -4, -5],
+    [female_s, white_s, retired_s, bronchitis_s, smoker_s, -1.1, -2.1, -3.1, -4.1, -5.1]
     ])
 
 ######################################################################
+
 
 
 # We generate a matrix for each severity type:

@@ -28,38 +28,11 @@ def generate_data(cases, col, prob):
     
     # we traverse through the matrix columns
     for i in range(len(cases[:,0])):
-        # fills normal distributed features
-        
-        # Not severe (mild)
-        if prob == -1:  
-            cases[i,col] = np.random.normal(65.8, 9.7, 1)
-        elif prob == -2:  
-            cases[i,col] = np.random.normal(7.8,6.7, 1)
-        elif prob == -3:  
-            cases[i,col] = np.random.normal(1.3,0.6, 1)
-        elif prob == -4:  
-            cases[i,col] = np.random.normal(50.8,19.9, 1)
-        elif prob == -5:  
-            cases[i,col] = np.random.normal(36.1,12.7, 1)  
-        
-        # Severe
-        if prob == -1.1:  
-            cases[i,col] = np.random.normal(65.1,10.5, 1)
-        elif prob == -2.1:  
-            cases[i,col] = np.random.normal(6.4, 4.9, 1)
-        elif prob == -3.1:  
-            cases[i,col] = np.random.normal(1.4, 0.6, 1)
-        elif prob == -4.1:  
-            cases[i,col] = np.random.normal(62.1,17.7, 1)
-        elif prob == -5.1:  
-            cases[i,col] = np.random.normal(47.9,9.6, 1) 
-        
-        else: # These are the indicator features
-            rand = rnd.random()
-            if rand <= prob:
-                cases[i,col] = 1
-            else:
-                cases[i,col] = 0
+        rand = rnd.random()
+        if rand <= prob:
+            cases[i,col] = 1
+        else:
+            cases[i,col] = 0
         
     return cases
 
@@ -69,11 +42,11 @@ def generate_data(cases, col, prob):
   
     
 # Number of cases for each severity :
-mild = 10
+mild = 50
 severe = 10
 
 # Number of features we are considering
-n = 15
+n = 14
 
 #################
 # Parameters sets
@@ -82,7 +55,6 @@ n = 15
 ############ Thorax ############
 # Severe cases
 female_s = 0.2
-male_s = 0.80
 never_smoke_s = 0.129411765
 ex_smoker_s = 0.494117647
 smoker_s = 0.376470588
@@ -99,7 +71,6 @@ steroids_preadmission_s = 0.576470588
 
 # Not Severe cases
 female = 0.095238095
-male = 1-female
 never_smoke = 0.1666666667
 ex_smoker = 0.547619048
 smoker = 0.285714286
@@ -117,11 +88,9 @@ steroids_preadmission = 0.547619048
 # Probability matrix for feature bases on severity:
 # prob[i,j] will be the probability of having feature j given you have severity i
 prob = np.array([
-    [female, male, never_smoke, ex_smoker, smoker, wheezing, congestion, rhinorrhea, sore_throat, sputum, fever, headache, muscle_pain, hoarse, steroids_preadmission],
-    [female_s, male_s, never_smoke_s, ex_smoker_s, smoker_s, wheezing_s, congestion_s, rhinorrhea_s, sore_throat_s, sputum_s, fever_s, headache_s, muscle_pain_s, hoarse_s, steroids_preadmission_s]
+    [female, never_smoke, ex_smoker, smoker, wheezing, congestion, rhinorrhea, sore_throat, sputum, fever, headache, muscle_pain, hoarse, steroids_preadmission],
+    [female_s, never_smoke_s, ex_smoker_s, smoker_s, wheezing_s, congestion_s, rhinorrhea_s, sore_throat_s, sputum_s, fever_s, headache_s, muscle_pain_s, hoarse_s, steroids_preadmission_s]
     ])
-
-
 
 
 # We generate a matrix for each severity type:
