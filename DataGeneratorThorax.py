@@ -37,9 +37,6 @@ def generate_data(cases, col, prob):
     return cases
 
 
-
- 
-  
     
 # Number of cases for each severity :
 mild = 50
@@ -53,6 +50,8 @@ n = 14
 #################
 
 ############ Thorax ############
+
+# Probabilities of having the feature given the severity 
 # Severe cases
 female_s = 0.2
 never_smoke_s = 0.129411765
@@ -68,7 +67,6 @@ headache_s = 0.317647059
 muscle_pain_s = 0.188235294
 hoarse_s = 0.4
 steroids_preadmission_s = 0.576470588
-
 # Not Severe cases
 female = 0.095238095
 never_smoke = 0.1666666667

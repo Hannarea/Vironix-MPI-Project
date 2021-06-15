@@ -80,12 +80,14 @@ n = 10
 # RCCM Data Set
 #############################
 
+# Probabilities of having the feature given the severity 
+# Severe
 female_s = 0.531531532
 white_s = 0.932432432
 retired_s = 0.527027027
 bronchitis_s = 0.310344828
 smoker_s = 0.31981982
-
+# Mild
 female = 0.515957447
 white = 0.882978723
 retired = 0.585106383
@@ -94,7 +96,6 @@ smoker = 0.308510638
 
 # Probability matrix for feature bases on severity:
 # prob[i,j] will be the probability of having feature j given you have severity i
-# If negative, indicates to use a normal distribution 
 # If prob[i] is negative, then we use a gaussian distribution:
     ### Mild Cases
     # -1: age (mean, standard deviation) = (65.8,9.7)
