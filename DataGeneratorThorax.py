@@ -57,6 +57,8 @@ female_s = 0.2
 never_smoke_s = 0.129411765
 ex_smoker_s = 0.494117647
 smoker_s = 0.376470588
+print(never_smoke_s+ex_smoker_s+smoker_s)
+
 wheezing_s = 0.894117647
 congestion_s = 0.494117647
 rhinorrhea_s = 0.388235294
@@ -69,7 +71,7 @@ hoarse_s = 0.4
 steroids_preadmission_s = 0.576470588
 # Not Severe cases
 female = 0.095238095
-never_smoke = 0.1666666667
+never_smoke = 0.166666666
 ex_smoker = 0.547619048
 smoker = 0.285714286
 wheezing = 0.523809524
