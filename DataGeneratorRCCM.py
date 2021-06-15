@@ -4,6 +4,9 @@ Created on Mon Jun 14 14:46:20 2021
 
 @author: hreed
 """
+
+
+
 import numpy as np
 import random as rnd
 
@@ -63,10 +66,6 @@ def generate_data(cases, col, prob):
         
     return cases
 
-
-
- 
-  
     
 # Number of cases for each severity :
 mild = 10
@@ -74,7 +73,6 @@ severe = 10
 
 # Number of features: 
 n = 10
-
 
 #############################
 # RCCM Data Set
@@ -124,14 +122,12 @@ prob = np.array([
     # Each column specifies if the feature is present or not (binary)
 
 # Here we generate the mild cases set
-print("making the mild cases:")
 mild_cases = np.zeros((mild, n))
 for i in range(n):
     generate_data(mild_cases, i, prob[0,i])
 
     
 # Here we generate the severe cases set
-print("Making the severe cases:")
 severe_cases = np.zeros((severe, n))
 for i in range(n):
     generate_data(severe_cases, i, prob[1,i])
