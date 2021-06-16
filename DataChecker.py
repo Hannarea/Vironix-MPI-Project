@@ -7,7 +7,7 @@ Created on Tue Jun 15 14:20:47 2021
 
 import numpy as np
 
-def check_age(data, lower_bound, upper_bound, col, remove = True):
+def check_range(data, lower_bound, upper_bound, col, remove = True):
     '''
     Verify that the data in column col is in the given range (lower_bound, upper_bound)
 
