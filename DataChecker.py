@@ -39,12 +39,32 @@ def check_range(data, lower_bound, upper_bound, col, remove = True):
     
     
     
-mild_cases_bad = 0
 
-for i in range(len(mild_cases[:,0])):
-    if sum(mild_cases[0, 5:14]) == 9:
-        mild_cases = np.delete(mild_cases, 0, 0)
-        mild_cases_bad = mild_cases_bad + 1
+def check_mild(data, col1, col2, delete = True):
+    '''
+    Checks that the data is reasonable, indended to deal with the mild cases 
+    (we don't want too many features to be present) 
+
+    Parameters
+    ----------
+    data : matrix of cases, rows are individuals and columns are features
+    col1 : beginning column to check 
+    col2 : end column to check 
+    delete : indicates whether to delete the rows that are deemed no reasonable
+
+    Returns
+    -------
+    The (updated) array of data and the number of bad cases there were/are
+
+    '''
+    data_bad = 0
+    
+    for i in range(len(data[:,0])):
+        if sum(data[0, 5:14]) == 9:
+            data = np.delete(data, i, 0)
+            data_bad += 1
+    
+    return data, data_bad
 
     
 
