@@ -37,5 +37,15 @@ def check_range(data, lower_bound, upper_bound, col, remove = True):
     return problems, data 
         
     
+    
+    
+mild_cases_bad = 0
+
+for i in range(len(mild_cases[:,0])):
+    if sum(mild_cases[0, 5:14]) == 9:
+        mild_cases = np.delete(mild_cases, 0, 0)
+        mild_cases_bad = mild_cases_bad + 1
+
+    
 
 
