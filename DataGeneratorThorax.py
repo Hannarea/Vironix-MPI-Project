@@ -6,6 +6,7 @@ Created on Mon Jun 14 14:46:20 2021
 """
 import numpy as np
 import random as rnd
+import csv
 
 def generate_data(cases, col, prob):
     '''
@@ -104,8 +105,8 @@ def generate_data(cases, col, prob):
 
     
 # Number of cases for each severity :
-mild = 50
-severe = 50
+mild = 1000
+severe = 1000
 
 # Number of features we are considering
 n = 10
@@ -164,11 +165,34 @@ for i in range(n):
     generate_data(severe_cases, i, prob[1,i])
 
 
-print("Mild Cases:")
-print(mild_cases)
+# write to file
 
-print("Severe Cases:")
-print(severe_cases)
+filename = "SampleNaiveData.csv"
+fields = ["Severity","Age", "Preious Exacerbations", "Sex", "Smoke", "Wheezing", "Congestion", "Rhinorrhea", "Sore Throat", "Sputum", "Headache"]
+
+
+with open(filename, 'w') as csvfile: 
+    # creating a csv writer object 
+    csvwriter = csv.writer(csvfile) 
+        
+    # writing the fields 
+    csvwriter.writerow(fields) 
+        
+    # writing the data rows 
+    rows = []
+    for i in range(mild):
+      row = ["0"]
+      for j in range(10):
+        row.append(mild_cases[i][j])
+      rows.append(row)
+
+    for i in range(mild):
+      row = ["1"]
+      for j in range(10):
+        row.append(severe_cases[i][j])
+      rows.append(row)
+    
+    csvwriter.writerows(rows)
 
 
 
