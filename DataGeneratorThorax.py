@@ -26,27 +26,71 @@ def generate_data(cases, col, prob):
 
     '''
     # we traverse through the matrix columns
-    
-    if prob == -1: #37.6470588% smokers(2), 49.4117647% ex_smokers(1), and 12.9411765% not smokers(0)
+                
+    if prob == -1: # from RCCM paper, age_s, mean = 65.1, standard deviation = 10.5
         for i in range(len(cases[:,0])):
-            rand = rnd.random()
-            if rand <= 0.129411765:
+            # Generate a random age
+            age = np.random.normal(65.1,10.5, 1)
+            # Categorize the age
+            if age < 50: 
                 cases[i,col] = 0
-            elif rand <= 0.129411765 + 0.494117647:
+            elif age < 60:
                 cases[i,col] = 1
+            elif age < 70:
+                cases[i,col] = 2
+            elif age < 80:
+                cases[i,col] = 3
             else:
-                cases[i, col] = 2
- 
-    elif prob == -2: #28.5714286% smokers(2), 54.7619048% ex_smokers(1), and 16.6666666% never smoked(0)
+                cases[i,col] = 4
+                
+    elif prob == -1.1: # from RCCM paper, age, mean = 65.8, standard deviation = 9.7    
         for i in range(len(cases[:,0])):
-            rand = rnd.random()
-            if rand <= 0.166666666:
+            # Generate a random age
+            age = np.random.normal(65.8,9.7, 1)
+            # Categorize the age
+            if age < 50: 
                 cases[i,col] = 0
-            elif rand <= 0.166666666 + 0.547619048:
+            elif age < 60:
                 cases[i,col] = 1
+            elif age < 70:
+                cases[i,col] = 2
+            elif age < 80:
+                cases[i,col] = 3
             else:
-                cases[i, col] = 2
-             
+                cases[i,col] = 4
+        
+    elif prob == -2: # from RCCM paper, previous exacerbation_s, mean = 2.2, standard deviation = 2.1
+        for i in range(len(cases[:,0])):
+            # Generate a random age
+            pre_ex = np.random.normal(2.2,2.1, 1)
+            # Categorize the age
+            if pre_ex < 0.5: 
+                cases[i,col] = 0
+            elif pre_ex < 1.5:
+                cases[i,col] = 1
+            elif pre_ex < 2.5:
+                cases[i,col] = 2
+            elif pre_ex < 3.5:
+                cases[i,col] = 3
+            else:
+                cases[i,col] = 4
+        
+    elif prob == -2.1: # from RCCM paper, previous exacerbation, mean = 1.3, standard deviation = 1.2
+        for i in range(len(cases[:,0])):
+            # Generate a random age
+            pre_ex = np.random.normal(1.3,1.2, 1)
+            # Categorize the age
+            if pre_ex < 0.5: 
+                cases[i,col] = 0
+            elif pre_ex < 1.5:
+                cases[i,col] = 1
+            elif pre_ex < 2.5:
+                cases[i,col] = 2
+            elif pre_ex < 3.5:
+                cases[i,col] = 3
+            else:
+                cases[i,col] = 4
+        
     else:
         for i in range(len(cases[:,0])):
             rand = rnd.random()
@@ -60,11 +104,11 @@ def generate_data(cases, col, prob):
 
     
 # Number of cases for each severity :
-mild = 10
+mild = 50
 severe = 50
 
 # Number of features we are considering
-n = 12
+n = 10
 
 #################
 # Parameters sets
@@ -74,37 +118,33 @@ n = 12
 
 # Probabilities of having the feature given the severity 
 # Severe cases
+age_s = -1
+previous_exacerbation_s = -2
 female_s = 0.2
-smoker_s = -1 # we will generate 37.6470588% smokers, 49.4117647% ex_smokers, and 12.9411765% never smoked
+smoker_s = 0.376470588
 wheezing_s = 0.894117647
 congestion_s = 0.494117647
 rhinorrhea_s = 0.388235294
 sore_throat_s = 0.223529412
 sputum_s = 0.576470588
-fever_s = 0.164705882
 headache_s = 0.317647059
-muscle_pain_s = 0.188235294
-hoarse_s = 0.4
-steroids_preadmission_s = 0.576470588
 # Not Severe cases
+age = -1.1
+previous_exacerbation = -2.1
 female = 0.095238095
-smoker = -2 # we will generate 28.5714286% smokers, 54.7619048% ex_smokers, and 16.6666666% never smoked
+smoker = 0.285714286
 wheezing = 0.523809524
 congestion = 0.214285714
 rhinorrhea = 0.238095238
 sore_throat = 0.023809524
 sputum = 0
-fever = 0.095238095
 headache = 0.023809524
-muscle_pain = 0.30952381
-hoarse = 0.30952381
-steroids_preadmission = 0.547619048
 
 # Probability matrix for feature bases on severity:
 # prob[i,j] will be the probability of having feature j given you have severity i
 prob = np.array([
-    [female, smoker, wheezing, congestion, rhinorrhea, sore_throat, sputum, fever, headache, muscle_pain, hoarse, steroids_preadmission],
-    [female_s, smoker_s, wheezing_s, congestion_s, rhinorrhea_s, sore_throat_s, sputum_s, fever_s, headache_s, muscle_pain_s, hoarse_s, steroids_preadmission_s]
+    [age, previous_exacerbation, female, smoker, wheezing, congestion, rhinorrhea, sore_throat, sputum, headache],
+    [age_s, previous_exacerbation_s, female_s, smoker_s, wheezing_s, congestion_s, rhinorrhea_s, sore_throat_s, sputum_s, headache_s]
     ])
 
 
