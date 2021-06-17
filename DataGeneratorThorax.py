@@ -115,12 +115,11 @@ n = 10
 # Parameters sets
 #################
 
-############ Thorax ############
-
+############ From Thorax ############
 # Probabilities of having the feature given the severity 
 # Severe cases
-age_s = -1
-previous_exacerbation_s = -2
+age_s = -1 # reference in function
+previous_exacerbation_s = -2 # reference in function
 female_s = 0.2
 smoker_s = 0.376470588
 wheezing_s = 0.894117647
@@ -130,8 +129,8 @@ sore_throat_s = 0.223529412
 sputum_s = 0.576470588
 headache_s = 0.317647059
 # Not Severe cases
-age = -1.1
-previous_exacerbation = -2.1
+age = -1.1 # reference in function
+previous_exacerbation = -2.1 # reference in function
 female = 0.095238095
 smoker = 0.285714286
 wheezing = 0.523809524
