@@ -10,6 +10,7 @@ Created on Thu Jun 17 11:12:58 2021
 import numpy as np
 import matplotlib.pyplot as plt
 from DataGeneratorThorax import generate_data
+from DataChecker import check_mild, check_range
 
 def fun(x, mu, sig):
     return 1/(sig*np.sqrt(2*np.pi))*np.exp(-1/2*((x-mu)/sig)**2)
@@ -101,8 +102,13 @@ for i in range(n):
     generate_data(severe_cases, i, prob[1,i])
 
 
-
-
+print(mild_cases[:10, :])
+# Check the data 
+x, y = check_mild(mild_cases, 2, len(mild_cases)-1, 4)
+print(y)
+x, y = check_range(severe_cases, 0, 5, 0)
+print(x)
+print(len(x))
 
 
 

@@ -7,7 +7,7 @@ Created on Tue Jun 15 14:20:47 2021
 
 import numpy as np
 
-def check_range(data, lower_bound, upper_bound, col, remove = True):
+def check_range(data, lower_bound, upper_bound, col, remove = False):
     '''
     Verify that the data in column col is in the given range (lower_bound, upper_bound)
 
@@ -40,7 +40,7 @@ def check_range(data, lower_bound, upper_bound, col, remove = True):
     
     
 
-def check_mild(data, col1, col2, delete = True):
+def check_mild(data, col1, col2, lim, delete = False):
     '''
     Checks that the data is reasonable, indended to deal with the mild cases 
     (we don't want too many features to be present) 
@@ -50,6 +50,7 @@ def check_mild(data, col1, col2, delete = True):
     data : matrix of cases, rows are individuals and columns are features
     col1 : beginning column to check 
     col2 : end column to check 
+    lim : the number of features that can be indicated
     delete : indicates whether to delete the rows that are deemed no reasonable
 
     Returns
@@ -60,8 +61,9 @@ def check_mild(data, col1, col2, delete = True):
     data_bad = 0
     
     for i in range(len(data[:,0])):
-        if sum(data[0, 5:14]) == 9:
-            data = np.delete(data, i, 0)
+        if sum(data[i, col1:col2]) >= lim:
+            if delete == True:
+                data = np.delete(data, i, 0)
             data_bad += 1
     
     return data, data_bad
